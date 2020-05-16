@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Recursion;
+package greedyrobot;
 
 import java.util.Iterator;
 import java.util.Stack;
@@ -15,10 +15,6 @@ import java.util.Stack;
 public class Robot {
 
     Stack<Character> s = new Stack<>();
-    private int east = 0;
-    private int west = 0;
-    private int north = 0;
-    private int south = 0;
     private int x;
     private int y;
     private int xx;
@@ -34,72 +30,47 @@ public class Robot {
     }
 
     public void moving() {
-        moving(x, y, xx, yy);
+        moving(x, y, xx, yy, 0, 0, 0, 0);
     }
 
-    private void moving(int x, int y, int xx, int yy) {
+    private void moving(int x, int y, int xx, int yy, int north, int south, int east, int west) {
         if (x == xx && y == yy) {
             System.out.println(toString());
             return;
         }
         //lower than target
         if (y < yy) {
-            south = 0;
-            west = 0;
-            east = 0;
             if (north < max) {
                 s.push('N');
-                moving(x, y + 1, xx, yy);
-                north++;
+                moving(x, y + 1, xx, yy, north + 1, 0, 0, 0);
                 s.pop();
             }
-            else 
-                north = 0;
-            
         }
         //higher than target
         if (y > yy) {
-            north = 0;
-            west = 0;
-            east = 0;
             if(south < max){
                 s.push('S');
-                moving(x, y - 1, xx, yy);
-                south++;
+                moving(x, y - 1, xx, yy, 0, south + 1 , 0, 0);
                 s.pop();
             }
-            else
-                south = 0;
         }
         //left of target
         if (x < xx) {
-            south = 0;
-            west = 0;
-            north = 0;
             if (east < max) {
                 //south = max;
                 s.push('E');
-                moving(x + 1, y, xx, yy);
-                east++;
+                moving(x + 1, y, xx, yy, 0, 0, east + 1, 0);
                 s.pop();
             }
-            else 
-                east = 0;
             //east = max;
         }
         //right of target
         if (x > xx) {
-            east = 0;
-            north = 0;
-            south = 0;
             if (west < max) {
                 s.push('W');
-                moving(x - 1, y, xx, yy);
-                west++;
+                moving(x - 1, y, xx, yy, 0, 0, 0, west + 1);
                 s.pop();
             }
-            else
-                west = 0;
         }
     }
 

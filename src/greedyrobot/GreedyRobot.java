@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GreedyRobot;
+package greedyrobot;
 
 import java.util.Scanner;
 
@@ -14,8 +14,7 @@ import java.util.Scanner;
 public class GreedyRobot {
     
     public static void main(String[] args) {
-        Robot r = new Robot(-1, -3, 7, 2, 2);
+        Robot r = new Robot(0, 0, -10, -12, 1);
         r.moving();
-        
     }
 }
